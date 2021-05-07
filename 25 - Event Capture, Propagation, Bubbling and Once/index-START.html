@@ -40,9 +40,21 @@
   }
 </style>
 
-<button></button>
 <script>
+  const divs = document.querySelectorAll('div');
 
+  function logText(e) {
+    console.log(this.classList.value);
+    // stop bubbling up
+    e.stopPropagation();
+  }
+
+  // fires events on the way down, capture (false ) would fire the events as they bubble back up
+  // fires only once, once (true)
+  divs.forEach(div => div.addEventListener('click', logText, {
+    capture: false,
+    once: true
+  }))
 </script>
 </body>
 </html>
